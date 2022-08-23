@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from './layout/layout.module';
+import { HomeComponent } from './modules/home/home.component';
+import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
+import { SharedModule } from './shared/shared/shared.module';
+
+const COMPONENTS: any[] = [AppComponent, HomeComponent, PagenotfoundComponent];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NoopAnimationsModule
-  ],
+  declarations: [...COMPONENTS],
+  imports: [SharedModule, AppRoutingModule, NoopAnimationsModule, LayoutModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
