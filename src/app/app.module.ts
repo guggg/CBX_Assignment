@@ -20,7 +20,7 @@ const PRINT_BREAKPOINTS = [
   },
   {
     alias: "lg",
-    mediaQuery: "screen and (max-width: 1280px)",
+    mediaQuery: "screen and (max-width: 1279px)",
     overlapping: false,
     priority: 1001,
   },
@@ -30,7 +30,7 @@ const PRINT_BREAKPOINTS = [
   declarations: [...COMPONENTS],
   imports: [SharedModule, AppRoutingModule, NoopAnimationsModule, LayoutModule],
   providers: [
-    // { provide: BREAKPOINT, useValue: PRINT_BREAKPOINTS, multi: true },
+    { provide: BREAKPOINT, useValue: PRINT_BREAKPOINTS, multi: true },
   ],
   bootstrap: [AppComponent],
 })
