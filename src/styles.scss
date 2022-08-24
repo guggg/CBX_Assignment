@@ -17,3 +17,10 @@ mat-icon {
 button {
   cursor: pointer;
 }
+
+.form-group {
+  > .form-label {
+    margin-right: 20px;
+    white-space: nowrap;
+  }
+}
