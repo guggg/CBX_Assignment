@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const modules: any[] = [CommonModule, RouterModule];
 
@@ -15,11 +17,12 @@ const MATERIAL_MODULES = [
   MatCardModule,
   MatTableModule,
   MatButtonModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({
   declarations: [],
-  imports: [...modules, ...MATERIAL_MODULES],
-  exports: [...modules, ...MATERIAL_MODULES],
+  imports: [...modules, ...MATERIAL_MODULES, ReactiveFormsModule],
+  exports: [...modules, ...MATERIAL_MODULES, ReactiveFormsModule],
 })
 export class SharedModule {}
