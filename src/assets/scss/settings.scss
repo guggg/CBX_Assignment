@@ -1,1 +1,18 @@
-$background-gray: #F8F8F8
+$background-gray: #f8f8f8;
+$border-gray: #cccccc;
+
+
+@mixin responsive($property, $small, $large, $xxlarge, $important: "") {
+
+  #{$property}: $small#{$important};
+
+  @include breakpoint(large up) {
+
+      #{$property}: $large#{$important};
+  }
+
+  @include breakpoint(xxlarge up) {
+
+      #{$property}: $xxlarge#{$important};
+  }
+}

@@ -1,24 +1,97 @@
 <div class="container">
-  <mat-card>
-    <div
-      fxLayout="row"
-      fxLayout.sm="column"
-      fxLayout.lg="column"
-      fxFlex
-      fxLayoutAlign="space-around center"
-    >
-      <div fxFlex fxLayout="row" class="form-group">
-        <div class="form-label">First Name</div>
-        <div class="form-control">
-          <input type="text" />
+  <div
+    fxLayout
+    fxLayout.sm="column"
+    fxLayoutAlign="space-around"
+    fxLayoutGap="30px"
+  >
+    <mat-card fxFlex="35" fxLayoutAlign="start start">
+      <form action="">
+        <div
+          style="margin-bottom: 10px"
+          fxLayout="column"
+          fxLayout.sm="row"
+          fxLayout.lg="column"
+          fxLayoutGap="10px"
+        >
+          <div class="form-group" fxFlex fxLayoutAlign="space-between center">
+            <div class="form-label">First Name</div>
+            <div class="form-control">
+              <input type="text" />
+            </div>
+          </div>
+          <div class="form-group" fxFlex fxLayoutAlign="space-between center">
+            <div class="form-label">Last Name</div>
+            <div class="form-control">
+              <input type="text" />
+            </div>
+          </div>
         </div>
-      </div>
-      <div fxFlex fxLayout="row" class="form-group">
-        <div class="form-label">Last Name</div>
-        <div class="form-control">
-          <input type="text" />
+        <div
+          fxLayout="column"
+          fxLayout.sm="row"
+          fxLayout.lg="column"
+          fxLayoutGap="10px"
+        >
+          <div class="form-group" fxFlex fxLayoutAlign="space-between center">
+            <div class="form-label">Email*</div>
+            <div class="form-control">
+              <input type="text" />
+            </div>
+          </div>
+          <div class="form-group" fxFlex fxLayoutAlign="space-between center">
+            <div class="form-label">Type</div>
+            <div class="form-control">
+              <input type="text" />
+            </div>
+          </div>
         </div>
+
+        <div class="action">
+          <button mat-flat-button color="primary">Add</button>
+        </div>
+      </form>
+    </mat-card>
+
+    <div fxFlex="55">
+      <div class="demo-button-container">
+        <button mat-raised-button (click)="addData()" class="demo-button">
+          Add data
+        </button>
       </div>
+
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8 demo-table"
+      >
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef>Weight</th>
+          <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef>Symbol</th>
+          <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
     </div>
-  </mat-card>
+  </div>
 </div>

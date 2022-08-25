@@ -1,3 +1,4 @@
+@import "src/assets/scss/settings.scss";
 /* You can add global styles to this file, and also import other style files */
 
 html,
@@ -8,6 +9,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $background-gray;
 }
 
 mat-icon {
@@ -18,9 +20,22 @@ button {
   cursor: pointer;
 }
 
+.action {
+  text-align: right;
+  button {
+    margin-top: 10px;
+  }
+}
+
 .form-group {
   > .form-label {
     margin-right: 20px;
     white-space: nowrap;
+  }
+
+  > .form-control {
+    input {
+      border: 1px solid $border-gray;
+    }
   }
 }

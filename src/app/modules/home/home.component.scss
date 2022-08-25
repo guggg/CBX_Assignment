@@ -1,6 +1,11 @@
-@import "src/assets/scss/settings.scss";
-
 .container {
-  background-color: $background-gray;
   padding: 30px 50px;
+
+  // mat-card {
+  //   height: 200px;
+  // }
+
+  .demo-table {
+    width: 100%;
+  }
 }
