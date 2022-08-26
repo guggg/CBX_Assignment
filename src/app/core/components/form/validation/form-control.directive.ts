@@ -1,11 +1,10 @@
 import {
   Directive,
-  Input,
-  HostBinding,
-  Optional,
   Host,
+  HostBinding,
+  Input,
+  Optional,
   SkipSelf,
-  Inject,
 } from '@angular/core';
 import { ControlContainer, FormControl } from '@angular/forms';
 

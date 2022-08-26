@@ -33,16 +33,18 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
   @HostBinding('class.has-error')
   get hasErrors() {
     return (
-      this.formControlNames.some((c) => !c.valid && (c.dirty || c.touched)) &&
-      !this.validationDisabled
+      this.formControlNames.some(
+        (c) => !!!c.valid && (!!c.dirty || !!c.touched)
+      ) && !this.validationDisabled
     );
   }
 
   @HostBinding('class.has-success')
   get hasSuccess() {
+    const xx = !!this.formControlNames.some((c) => !!c.dirty || !!c.touched);
     return (
       !this.formControlNames.some((c) => !c.valid) &&
-      this.formControlNames.some((c) => c.dirty || c.touched) &&
+      this.formControlNames.some((c) => !!c.dirty || !!c.touched) &&
       !this.validationDisabled
     );
   }
@@ -81,11 +83,11 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
   }
 
   get isDirtyOrTouched() {
-    return this.formControlNames.some((c) => c.dirty && c.touched);
+    return this.formControlNames.some((c) => !!c.dirty && !!c.touched);
   }
 
   private getMessages(): string[] {
-    const messages = [];
+    const messages = [] as string[];
     if (!this.isDirtyOrTouched || this.validationDisabled) {
       return messages;
     }
@@ -109,7 +111,11 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
             if (!error) {
               continue;
             }
-            messages.push(error.format(this.label, control.errors[key]));
+
+            if (control.errors && error.format) {
+              messages.push(error?.format(this.label, control.errors[key]));
+            }
+
             break;
           }
         }

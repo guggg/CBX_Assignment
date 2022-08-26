@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { NgModule } from '@angular/core';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,14 +35,16 @@ const PRINT_BREAKPOINTS = [
     AppRoutingModule,
     NoopAnimationsModule,
     LayoutModule,
+    CoreModule,
+    FlexLayoutModule
 
-    FlexLayoutModule.withConfig({
-      useColumnBasisZero: false,
-      printWithBreakpoints: ['sm', 'lg'],
-    }),
+    // FlexLayoutModule.withConfig({
+    //   useColumnBasisZero: false,
+    //   printWithBreakpoints: ['sm', 'lg'],
+    // }),
   ],
   providers: [
-    { provide: BREAKPOINT, useValue: PRINT_BREAKPOINTS, multi: true },
+    // { provide: BREAKPOINT, useValue: PRINT_BREAKPOINTS, multi: true },
   ],
   bootstrap: [AppComponent],
 })

@@ -5,26 +5,28 @@
     fxLayoutAlign="space-around start"
     fxLayoutGap="30px"
   >
-    <mat-card fxFlexFill fxFlex="100" fxFlex.lg="35">
+    <mat-card
+      ngStyle.gt-sm="max-width: 33%; width: 33%"
+      ngStyle.sm="max-width: 100%; width: 100%"
+    >
       <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
         <div
-          style="margin-bottom: 10px"
+          style="margin-bottom: 20px"
           fxLayout="column"
           fxLayout.sm="row"
           fxLayout.lg="column"
-          fxLayoutGap="10px"
+          fxLayoutGap="20px"
         >
           <div class="form-group" fxFlex fxLayoutAlign="space-between center">
             <div class="form-label">First Name</div>
             <div class="form-control">
-              <input formControlName="Name" type="text" />
-              {{ formGroup.get("Name")?.value }}
+              <input formControlName="firstName" type="text" />
             </div>
           </div>
           <div class="form-group" fxFlex fxLayoutAlign="space-between center">
             <div class="form-label">Last Name</div>
             <div class="form-control">
-              <input type="text" />
+              <input formControlName="lastName" type="text" />
             </div>
           </div>
         </div>
@@ -32,18 +34,18 @@
           fxLayout="column"
           fxLayout.sm="row"
           fxLayout.lg="column"
-          fxLayoutGap="10px"
+          fxLayoutGap="20px"
         >
           <div class="form-group" fxFlex fxLayoutAlign="space-between center">
             <div class="form-label">Email*</div>
             <div class="form-control">
-              <input type="text" />
+              <input formControlName="email" type="text" />
             </div>
           </div>
           <div class="form-group" fxFlex fxLayoutAlign="space-between center">
             <div class="form-label">Type</div>
             <div class="form-control">
-              <input type="text" />
+              <input formControlName="type" type="text" />
             </div>
           </div>
         </div>
@@ -54,7 +56,10 @@
       </form>
     </mat-card>
 
-    <div fxFlexFill fxFlex="100" fxFlex.lg="55">
+    <div
+      ngStyle.gt-sm="max-width: 66%; width: 66%"
+      ngStyle.sm="max-width: 100%; width: 100%"
+    >
       <div class="button-container">
         <button (click)="delete()" mat-button color="primary">Delete</button>
       </div>
@@ -86,19 +91,19 @@
         <!-- Name Column -->
         <ng-container matColumnDef="Name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.Name }}</td>
+          <td mat-cell *matCellDef="let element">{{ getFullName(element) }}</td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="Email">
           <th mat-header-cell *matHeaderCellDef>Email</th>
-          <td mat-cell *matCellDef="let element">{{ element.Email }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="Type">
           <th mat-header-cell *matHeaderCellDef>Type</th>
-          <td mat-cell *matCellDef="let element">{{ element.Type }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.type }}</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

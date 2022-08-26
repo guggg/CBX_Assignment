@@ -17,7 +17,7 @@ import { Component, Input } from '@angular/core';
 })
 export class FormMessageComponent {
   @Input()
-  messages = () => [];
+  messages = (): string[] => [];
 
   get className() {
     return 'invalid';
