@@ -1,15 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ReactiveFormsModule } from '@angular/forms';
+import { DialogModule } from "@angular/cdk/dialog";
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTableModule } from "@angular/material/table";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { RouterModule } from "@angular/router";
 
-const modules: any[] = [CommonModule, RouterModule];
+const modules: any[] = [CommonModule, RouterModule, DialogModule];
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -18,6 +20,7 @@ const MATERIAL_MODULES = [
   MatTableModule,
   MatButtonModule,
   MatCheckboxModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

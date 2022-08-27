@@ -1,24 +1,25 @@
-import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { FormValidators } from './../../core/components/form/validation/form-validators';
-import { formInfo, initialData } from './home.data';
-import { ContactInfo } from './interfaces/contact-info';
+import { SelectionModel } from "@angular/cdk/collections";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { MatTable, MatTableDataSource } from "@angular/material/table";
+import { FormValidators } from "./../../core/components/form/validation/form-validators";
+import { LayoutService } from "./../../layout/services/layout.service";
+import { initialData } from "./home.data";
+import { ContactInfo } from "./interfaces/contact-info";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<any>;
-  displayedColumns: string[] = ['select', 'Name', 'Email', 'Type'];
+  @Input() addInfo = null;
+
+  displayedColumns: string[] = ["select", "Name", "Email", "Type"];
   data: ContactInfo[] = initialData;
   dataSource = new MatTableDataSource<ContactInfo>(this.data);
   selection = new SelectionModel<ContactInfo>(true, []);
-
-  formInfo = formInfo;
 
   formGroup = new FormGroup({
     firstName: new FormControl(null),
@@ -30,10 +31,15 @@ export class HomeComponent implements OnInit {
     type: new FormControl(null),
   });
 
-  constructor() {}
+  constructor(private layoutService: LayoutService) {}
 
   ngOnInit(): void {
-    null;
+    this.layoutService.node$.subscribe((result) => {
+      if (result?.email) {
+        this.data.push(result as ContactInfo);
+        this.dataSource.data = this.data;
+      }
+    });
   }
 
   delete() {
@@ -45,14 +51,12 @@ export class HomeComponent implements OnInit {
     this.selection.clear();
   }
 
-  /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected()
       ? this.selection.clear()

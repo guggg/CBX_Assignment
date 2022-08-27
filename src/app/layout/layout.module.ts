@@ -8,7 +8,7 @@ const COMPONENTS: any[] = [HeaderComponent, FooterComponent, LayoutComponent];
 const COMPONENTS_NOROUTE: any[] = [];
 
 @NgModule({
-  declarations: [COMPONENTS],
+  declarations: [COMPONENTS, LayoutComponent],
   imports: [SharedModule],
   entryComponents: COMPONENTS_NOROUTE,
 })
