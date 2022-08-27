@@ -70,5 +70,8 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     this.data.push(this.formGroup.value as unknown as ContactInfo);
     this.dataSource.data = this.data;
+
+    this.formGroup.reset();
+    this.formGroup.updateValueAndValidity();
   }
 }

@@ -1,13 +1,17 @@
 .toolbar {
   justify-content: center;
-}
 
-button.example-icon {
-  border: none;
-  background-color: inherit;
-  position: absolute;
-  right: 20px;
-  mat-icon {
-    transform: scale(1.3);
+  span {
+    cursor: pointer;
+  }
+
+  button.example-icon {
+    border: none;
+    background-color: inherit;
+    position: absolute;
+    right: 20px;
+    mat-icon {
+      transform: scale(1.3);
+    }
   }
 }

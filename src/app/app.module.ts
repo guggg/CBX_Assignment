@@ -1,35 +1,32 @@
-import { CoreModule } from './core/core.module';
-import { NgModule } from '@angular/core';
+import { CoreModule } from "./core/core.module";
+import { NgModule } from "@angular/core";
 
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LayoutModule } from './layout/layout.module';
-import { HomeComponent } from './modules/home/home.component';
-import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
-import { SharedModule } from './shared/shared.module';
-import { BREAKPOINTS, FlexLayoutModule } from '@angular/flex-layout';
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { LayoutModule } from "./layout/layout.module";
+import { HomeComponent } from "./modules/home/home.component";
+import { PagenotfoundComponent } from "./modules/pagenotfound/pagenotfound.component";
+import { SharedModule } from "./shared/shared.module";
+import {
+  BREAKPOINT,
+  BREAKPOINTS,
+  DEFAULT_BREAKPOINTS,
+  FlexLayoutModule,
+} from "@angular/flex-layout";
 
 const PRINT_BREAKPOINTS = [
   {
-    alias: 'sm',
-    suffix: 'sm',
-    mediaQuery: 'print and (max-width: 1279px)',
+    alias: "sm",
+    mediaQuery: "screen and (max-width: 1279px)",
     overlapping: false,
-    priority: 1001, // Needed if overriding the default print breakpoint
-  },
-  {
-    alias: 'gt-sm',
-    suffix: 'gt-sm',
-    mediaQuery: 'print and (min-width: 1280px)',
-    overlapping: false,
-    priority: 1001, // Needed if overriding the default print breakpoint
-  },
+    priority: 1001,
+  }
 ];
 
 export const BreakPointsProvider = {
   provide: BREAKPOINTS,
-  useValue: PRINT_BREAKPOINTS,
+  useValue: DEFAULT_BREAKPOINTS,
   multi: true,
 };
 
@@ -43,14 +40,14 @@ const COMPONENTS: any[] = [AppComponent, HomeComponent, PagenotfoundComponent];
     NoopAnimationsModule,
     LayoutModule,
     CoreModule,
-    FlexLayoutModule,
-
-    // FlexLayoutModule.withConfig({
-    //   useColumnBasisZero: false,
-    //   printWithBreakpoints: ['sm', 'lg'],
-    // }),
+    FlexLayoutModule.withConfig({
+      useColumnBasisZero: false,
+      printWithBreakpoints: ["sm"],
+    }),
   ],
-  // providers: [BreakPointsProvider],
+  providers: [
+    { provide: BREAKPOINT, useValue: PRINT_BREAKPOINTS, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

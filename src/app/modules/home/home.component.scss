@@ -1,8 +1,29 @@
+@import "src/assets/scss/settings.scss";
+
 .container {
   padding: 30px 50px;
 
-  .demo-table {
+  form {
+    .input-container{
+      margin-bottom: 20px;
+    }
+  }
+
+  table {
     width: 100%;
+
+    td {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 50px;
+
+      > span {
+        background: $chip-color;
+        padding: 0 20px;
+        border-radius: 25px;
+      }
+    }
   }
 
   .button-container {
