@@ -7,13 +7,19 @@ import { FormControlDirective } from './components/form/validation/form-control.
 import { FormValidationDirective } from './components/form/validation/form-validation.directive';
 import { AddContactInfoDialogComponent } from './components/add-contact-info-dialog/add-contact-info-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { CustomShowHideDirective } from './directives/custom-layout-directive.directive';
 
 const COMPONENTS: any[] = [FormMessageComponent, FormGroupComponent];
 
 const DIRECTIVES: any[] = [FormControlDirective, FormValidationDirective];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...DIRECTIVES, AddContactInfoDialogComponent],
+  declarations: [
+    ...COMPONENTS,
+    ...DIRECTIVES,
+    AddContactInfoDialogComponent,
+    CustomShowHideDirective,
+  ],
   imports: [CommonModule, FormsModule, SharedModule],
   exports: [...COMPONENTS, ...DIRECTIVES],
 })

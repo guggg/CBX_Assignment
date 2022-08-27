@@ -8,25 +8,32 @@ import { LayoutModule } from './layout/layout.module';
 import { HomeComponent } from './modules/home/home.component';
 import { PagenotfoundComponent } from './modules/pagenotfound/pagenotfound.component';
 import { SharedModule } from './shared/shared.module';
-import { BREAKPOINT } from '@angular/flex-layout';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
-const COMPONENTS: any[] = [AppComponent, HomeComponent, PagenotfoundComponent];
+import { BREAKPOINTS, FlexLayoutModule } from '@angular/flex-layout';
 
 const PRINT_BREAKPOINTS = [
   {
     alias: 'sm',
-    mediaQuery: 'screen and (max-width: 1279px)',
+    suffix: 'sm',
+    mediaQuery: 'print and (max-width: 1279px)',
     overlapping: false,
-    priority: 1001,
+    priority: 1001, // Needed if overriding the default print breakpoint
   },
   {
-    alias: 'lg',
-    mediaQuery: 'screen and (min-width: 1280px)',
+    alias: 'gt-sm',
+    suffix: 'gt-sm',
+    mediaQuery: 'print and (min-width: 1280px)',
     overlapping: false,
-    priority: 1001,
+    priority: 1001, // Needed if overriding the default print breakpoint
   },
 ];
+
+export const BreakPointsProvider = {
+  provide: BREAKPOINTS,
+  useValue: PRINT_BREAKPOINTS,
+  multi: true,
+};
+
+const COMPONENTS: any[] = [AppComponent, HomeComponent, PagenotfoundComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -36,16 +43,14 @@ const PRINT_BREAKPOINTS = [
     NoopAnimationsModule,
     LayoutModule,
     CoreModule,
-    FlexLayoutModule
+    FlexLayoutModule,
 
     // FlexLayoutModule.withConfig({
     //   useColumnBasisZero: false,
     //   printWithBreakpoints: ['sm', 'lg'],
     // }),
   ],
-  providers: [
-    // { provide: BREAKPOINT, useValue: PRINT_BREAKPOINTS, multi: true },
-  ],
+  // providers: [BreakPointsProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
